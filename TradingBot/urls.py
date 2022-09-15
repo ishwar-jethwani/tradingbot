@@ -29,7 +29,7 @@ urlpatterns = [
 
 # application urls
 urlpatterns+=[
-    path("accounts/",include("account.urls")),
+    path("accounts/",include("accounts.urls")),
     
 ]
 

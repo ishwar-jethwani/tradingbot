@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from .constants import *
 from datetime import timedelta
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS+=[
     'django.contrib.sites',
     'allauth',
+    'allauth.account',
     'dj_rest_auth.registration',
     'rest_framework.authtoken',
 ]
@@ -58,7 +60,7 @@ INSTALLED_APPS+=[
 
 # Created Application
 INSTALLED_APPS+=[
-    'account',
+    'accounts',
 ]
 
 
@@ -100,8 +102,12 @@ WSGI_APPLICATION = 'TradingBot.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config("RDS_DB_NAME"),
+        'USER': config("RDS_USERNAME"),
+        'PASSWORD': config("RDS_PASSWORD"),
+        'HOST': config("RDS_HOSTNAME"),
+        'PORT': config("RDS_PORT"),
     }
 }
 
@@ -147,7 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication config
 
-AUTH_USER_MODEL = 'account.User'
+AUTH_USER_MODEL = 'accounts.User'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_VARIFICATION = 'none'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -192,7 +199,7 @@ SIMPLE_JWT = {
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'account.serializers.UserSerilizer',
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.UserSerilizer',
 }
 
 
