@@ -9,7 +9,7 @@ from django.db.models.signals import pre_save
 
 class User(AbstractBaseUser,PermissionsMixin):
     user_id     = models.CharField(max_length=10,unique=True)
-    username    = models.CharField(max_length=50,unique=True,verbose_name="username")
+    username    = None
     is_staff    = models.BooleanField(default=False)
     is_superuser= models.BooleanField(default=False)
     is_active   = models.BooleanField(('active'), default=True)
