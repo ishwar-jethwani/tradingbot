@@ -84,7 +84,7 @@ ROOT_URLCONF = 'TradingBot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -155,7 +155,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Authentication config
-
+ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 AUTH_USER_MODEL = 'accounts.User'
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_VARIFICATION = 'none'
@@ -204,7 +204,9 @@ SIMPLE_JWT = {
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'accounts.serializers.UserSerilizer',
 }
-
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}
 
 # CROS Headers
 CORS_ALLOWED_ORIGINS = [

@@ -8,20 +8,22 @@ from .utils import *
 from django.db.models.signals import pre_save
 
 class User(AbstractBaseUser,PermissionsMixin):
-    user_id         = models.CharField(max_length=10,unique=True,blank=True,null=True)
-    username        = None
-    is_staff        = models.BooleanField(default=False)
-    is_superuser    = models.BooleanField(default=False)
-    is_active       = models.BooleanField(('active'), default=True)
-    email           = models.EmailField(('email address'),unique=True)
-    date_joined     = models.DateTimeField(('date_joined'), auto_now_add=True)
-    broker_platform = models.JSONField(default=dict,verbose_name="Broker Platforms",null=True)
-    signal_platform = models.JSONField(default=dict,verbose_name="Signal Platforms",null=True)
-    is_verified     = models.BooleanField(default=False)
-
-    objects = CustomUserManager()
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    "User Model For getting the data from user"
+    user_id             = models.CharField(max_length=10,unique=True,blank=True,null=True)
+    username            = None
+    is_staff            = models.BooleanField(default=False)
+    is_superuser        = models.BooleanField(default=False)
+    is_active           = models.BooleanField(('active'), default=True)
+    email               = models.EmailField(('email address'),unique=True)
+    date_joined         = models.DateTimeField(('date_joined'), auto_now_add=True)
+    broker_platform     = models.JSONField(default=dict,verbose_name="Broker Platforms",null=True)
+    signal_platform     = models.JSONField(default=dict,verbose_name="Signal Platforms",null=True)
+    user_profile_img    = models.URLField(verbose_name="Profile Image",blank=True,null=True)
+    first_name          = models.CharField(max_length=60,verbose_name="First Name",blank=True,null=True)
+    last_name           = models.CharField(max_length=60,verbose_name="Last Name",blank=True,null=True)
+    is_verified         = models.BooleanField(default=False)
+    objects             = CustomUserManager()
+    USERNAME_FIELD      = 'email'
 
     class Meta:
         verbose_name = ('user')
