@@ -38,7 +38,7 @@ class CustomRegisterSerializer(RegisterSerializer):
         
 class VerificationSerializer(serializers.ModelSerializer):
     "Verification Response Serializer"
-    class Mets:
+    class Meta:
         model = User
         fields = ["user_id","email","is_verified"]
     def to_representation(self, instance):
