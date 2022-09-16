@@ -30,6 +30,8 @@ urlpatterns = [
 # application urls
 urlpatterns+=[
     path("accounts/",include("accounts.urls")),
+    path("signals/",include("signals.urls")),
+    path("trading/",include("activity.urls")),
     
 ]
 

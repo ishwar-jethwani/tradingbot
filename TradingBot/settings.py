@@ -62,6 +62,8 @@ INSTALLED_APPS+=[
 # Created Application
 INSTALLED_APPS+=[
     'accounts',
+    'signals',
+    'activity',
 ]
 
 

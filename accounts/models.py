@@ -1,3 +1,5 @@
+from email.policy import default
+from sys import platform
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
@@ -6,14 +8,16 @@ from .utils import *
 from django.db.models.signals import pre_save
 
 class User(AbstractBaseUser,PermissionsMixin):
-    user_id     = models.CharField(max_length=10,unique=True,blank=True,null=True)
-    username    = None
-    is_staff    = models.BooleanField(default=False)
-    is_superuser= models.BooleanField(default=False)
-    is_active   = models.BooleanField(('active'), default=True)
-    email       = models.EmailField(('email address'),unique=True)
-    date_joined = models.DateTimeField(('date_joined'), auto_now_add=True)
-    is_verified = models.BooleanField(default=False)
+    user_id         = models.CharField(max_length=10,unique=True,blank=True,null=True)
+    username        = None
+    is_staff        = models.BooleanField(default=False)
+    is_superuser    = models.BooleanField(default=False)
+    is_active       = models.BooleanField(('active'), default=True)
+    email           = models.EmailField(('email address'),unique=True)
+    date_joined     = models.DateTimeField(('date_joined'), auto_now_add=True)
+    broker_platform = models.JSONField(default=dict,verbose_name="Broker Platforms",null=True)
+    signal_platform = models.JSONField(default=dict,verbose_name="Signal Platforms",null=True)
+    is_verified     = models.BooleanField(default=False)
 
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'
