@@ -114,6 +114,14 @@ DATABASES = {
     }
 }
 
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = f'/http://%s.s3.amazonaws.com/{MEDIA_BUCKET}/media/' % MEDIA_BUCKET
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_DEFAULT_ACL = None
+REGION_NAME = REGION_NAME
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
