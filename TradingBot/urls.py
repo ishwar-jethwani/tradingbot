@@ -20,10 +20,13 @@ schema_view = get_schema_view(
    permission_classes=[permissions.AllowAny],
 )
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sentry-debug/', trigger_error),
     path("swagger/",schema_view.with_ui(cache_timeout=0), name='schema-json'),
     path("redoc/",schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
 ]
