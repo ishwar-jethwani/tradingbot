@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -98,7 +99,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'TradingBot.wsgi.application'
-
+ADMIN_SITE_HEADER = ADMIN_SITE_HEADER
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -255,3 +256,34 @@ EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'UltraTeam Team <noreply@onlinewebsitemarket.com>'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Django Admin Panel Settings
+
+# JAZZMIN_SETTINGS = {
+#     "site_title": "Library Admin",
+#     "site_header": "Library",
+#     "site_brand": "Library",
+#     "site_logo": "books/img/logo.png",
+#     "login_logo": None,
+#     "login_logo_dark": None,
+#     "site_logo_classes": "img-circle",
+#     "site_icon": None,
+#     "welcome_sign": "Welcome to the library",
+#     "copyright": "Acme Library Ltd",
+#     "search_model": "auth.User",
+#     "user_avatar": None,
+#     "show_sidebar": True,
+#     "navigation_expanded": True,
+#     "hide_apps": [],
+#     "hide_models": [],
+#     "order_with_respect_to": [],
+#     "default_icon_parents": "fas fa-chevron-circle-right",
+#     "default_icon_children": "fas fa-circle",
+#     "related_modal_active": False,
+#     "custom_css": None,
+#     "custom_js": None,
+#     "show_ui_builder": False,
+#     "changeform_format": "horizontal_tabs",
+#     "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+#     "language_chooser": True,
+# }
