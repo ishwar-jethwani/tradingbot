@@ -179,7 +179,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / ""
 ]
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3ManifestStaticStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
