@@ -47,7 +47,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEBUG
 
-ALLOWED_HOSTS = ["*","https://api.traddingbot.com","https://traddingbot.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -250,7 +250,9 @@ CORS_ALLOWED_ORIGINS = [
     "https://api.traddingbot.com",
     "https://traddingbot.com",
     "http://api.traddingbot.com",
-    "http://traddingbot.com"
+    "http://traddingbot.com",
+    "http://3.6.171.255",
+    "https:////3.6.171.255",
 ]
 
 CORS_ALLOW_METHODS = [
