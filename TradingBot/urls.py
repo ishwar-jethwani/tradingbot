@@ -4,6 +4,8 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from .constants import ADMIN_SITE_HEADER
+from django.conf.urls.static import static
+from django.conf import settings
 
 admin.site.site_header = ADMIN_SITE_HEADER
 
@@ -38,5 +40,8 @@ urlpatterns+=[
     path("trading/",include("activity.urls")),
     
 ]
+
+# url connection
+urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
