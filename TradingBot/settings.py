@@ -252,7 +252,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://api.traddingbot.com",
     "http://traddingbot.com",
     "http://3.6.171.255",
-    "https:////3.6.171.255",
+    "https://3.6.171.255",
 ]
 
 CORS_ALLOW_METHODS = [
