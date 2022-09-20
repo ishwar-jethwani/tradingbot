@@ -49,3 +49,4 @@ class VerificationSerializer(serializers.ModelSerializer):
             "isVerified":data["is_verified"]
         }
         return verification_data
+

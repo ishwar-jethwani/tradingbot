@@ -1,3 +1,4 @@
+from genericpath import exists
 import json
 from dj_rest_auth.views import LoginView
 from .serializers import *
@@ -9,7 +10,6 @@ import jwt
 from TradingBot.constants import KEY_FOR_OTP
 from rest_framework.response import Response
 from rest_framework import status
-
 
 class CustomLoginView(LoginView):
     "Custom Login View"
@@ -37,11 +37,45 @@ class EmailVerification(ListAPIView):
             recipient_list = [email],
             subject =subject,
             html_message = html_data,
-            message = f"This is you otp:{self.otp} to reset your password"
+            message = f"This is you otp:{self.otp} to verify email."
             )
         return Response({"msg":"email has been sent","value":encoded_value},status=status.HTTP_200_OK)
 
+class ResetPassword(ListAPIView):
+    otp = random.randint(1000,9999)
+    def get(self,request):
+        email = request.GET.get("email")
+        if User.objects.filter(email=email).exists():
+            html = get_template("reset.html")
+            html_data = html.render({"otp":self.otp})
+            key = KEY_FOR_OTP
+            encoded_value = jwt.encode({"otp":self.otp},key,algorithm="HS256")
+            subject = "OTP for Reset Password"
+            send_mail(
+                from_email = None,
+                recipient_list = [email],
+                subject =subject,
+                html_message = html_data,
+                message = f"This is you otp:{self.otp} to verify email."
+                )
+            return Response({"msg":"email has been sent","value":encoded_value},status=status.HTTP_200_OK)
+        return Response({"msg":"please enter registered email id"})   
+    def post(self,request):
+        email = request.data["email"]
+        password = request.data["password"]
+        user = User.objects.filter(email=email)
+        if user.exists():
+            user = user.first()
+            user.set_password(password)
+            user.save()
+            return Response({"msg":"password is set sucessfully"},status=status.HTTP_200_OK)
+        return Response({"msg":"please enter registered email id"})   
+
+
         
+
+
+
 
         
 
